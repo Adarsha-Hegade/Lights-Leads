@@ -16,7 +16,6 @@ const MainContent: React.FC = () => {
   const location = useLocation();
   const formRef = useRef<HTMLDivElement>(null);
   
-  const slugs = location.pathname.split('/').filter(Boolean);
   const redirectUrl = `https://magnific.in${location.pathname}`;
   const catalogueUrl = 'https://drive.google.com/file/d/1u9xgGTVEpBLpfZQA5uAt_JbtNaSXTyWd/view?usp=drive_link';
 

@@ -51,7 +51,7 @@ Lead Details:
 - Phone: ${data.phone}
 - City: ${data.city}
 ${data.email ? `- Email: ${data.email}` : ''}
-- Product Type: ${data.product_type === 'fans' ? 'Designer Fans' : 'Designer Lights'}
+- Product Type: ${data.product_type === 'lights' ? 'Designer Lights' : 'Other Products'}
 `;
 
   if (data.product_type === 'lights' && data.light_types && data.light_types.length > 0) {
@@ -106,7 +106,7 @@ const createEmailHTML = (data: FormData & { url_slugs: string[] }) => {
     <div style="background: linear-gradient(135deg, #1a5f7a, #2c3e50); padding: 40px 20px; text-align: center; border-radius: 16px 16px 0 0;">
       <h1 style="color: #ffffff; font-family: 'Playfair Display', serif; margin: 0; font-size: 28px;">New Lead Notification</h1>
       <p style="color: #c8a97e; margin: 10px 0 0;">
-        ${data.product_type === 'fans' ? 'Designer Fans' : 'Designer Lights'} Inquiry
+        ${data.product_type === 'lights' ? 'Designer Lights' : 'Other Products'} Inquiry
       </p>
     </div>
     
@@ -136,7 +136,7 @@ const createEmailHTML = (data: FormData & { url_slugs: string[] }) => {
           <tr>
             <td style="padding: 12px; border-bottom: 1px solid #eee; color: #666;">Product Type</td>
             <td style="padding: 12px; border-bottom: 1px solid #eee; font-weight: 500; color: #2c3e50;">
-              ${data.product_type === 'fans' ? 'Designer Fans' : 'Designer Lights'}
+              ${data.product_type === 'lights' ? 'Designer Lights' : 'Other Products'}
             </td>
           </tr>
           ${lightTypesHTML}

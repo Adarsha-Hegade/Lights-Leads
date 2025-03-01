@@ -11,7 +11,7 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedLightTypes, setSelectedLightTypes] = useState<string[]>([]);
   
-  const { register, handleSubmit, setValue, watch, formState: { errors, isValid } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>({
     mode: 'onChange',
     defaultValues: {
       product_type: 'lights',

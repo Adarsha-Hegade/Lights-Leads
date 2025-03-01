@@ -6,7 +6,7 @@ interface SuccessModalProps {
   websiteUrl: string;
 }
 
-const SuccessModal: React.FC<SuccessModalProps> = ({ websiteUrl }) => {
+const SuccessModal: React.FC<SuccessModalProps> = ({ catalogueUrl }) => {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl transform transition-all">

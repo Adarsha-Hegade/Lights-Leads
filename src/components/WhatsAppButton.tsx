@@ -5,8 +5,7 @@ import { getLocationInfo } from '../lib/tracking';
 const WhatsAppButton = () => {
   const phoneNumber = '919513866001';
   const [place, setPlace] = useState(''); 
-  const [productType, setProductType] = useState('designer products');
-
+  
   useEffect(() => {
     getLocationInfo().then((location) => {
       if (location) {
@@ -15,14 +14,6 @@ const WhatsAppButton = () => {
         setPlace('your location');
       }
     });
-
-    // Check URL for product type hints
-    const path = window.location.pathname.toLowerCase();
-    if (path.includes('fan') || path.includes('fans')) {
-      setProductType('designer fans');
-    } else if (path.includes('light') || path.includes('lights')) {
-      setProductType('designer lights');
-    }
   }, []);
 
   const message = encodeURIComponent(`Hi I'm looking for Decorative Lights in ${place}`);
