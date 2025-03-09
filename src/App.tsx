@@ -5,7 +5,7 @@ import SuccessModal from './components/SuccessModal';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
-import { FormData } from './types';
+// import { FormData } from './types';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Sparkles } from 'lucide-react';
@@ -38,7 +38,7 @@ const MainContent: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async () => {
     try {
       // Skip email sending as requested
       setShowSuccess(true);
