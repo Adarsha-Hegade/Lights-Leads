@@ -63,7 +63,7 @@ const MainContent: React.FC = () => {
       >
         <div className="max-w-3xl mx-auto">
           <div 
-            ref={formRef}
+            
             className="backdrop-blur-md bg-white/80 rounded-2xl shadow-2xl p-8 md:p-12"
           >
             {isLoading ? (
@@ -85,8 +85,8 @@ const MainContent: React.FC = () => {
                     Discover our curated collection of premium lighting designs. Complete the form below to receive exclusive access.
                   </p>
                 </div>
-
-                <LeadForm onSubmit={handleSubmit} />
+<div ref={formRef}>< LeadForm onSubmit={handleSubmit} /></div>
+                
               </>
             )}
           </div>

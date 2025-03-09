@@ -56,7 +56,6 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
 
       if (error) {
         console.error('Supabase error:', error);
-        // If the error is related to the light_types column, try without it
         if (error.message && error.message.includes('light_types')) {
           const { error: fallbackError } = await supabase
             .from('leads')
@@ -84,7 +83,6 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
       await onSubmit(data);
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Still call onSubmit to show success modal even if database submission fails
       await onSubmit(data);
     } finally {
       setIsSubmitting(false);
@@ -119,17 +117,21 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
     switch (currentStep) {
       case 0: // Light types selection
         return selectedLightTypes.length > 0;
-      case 1: // Personal info
-        return !!watchedFields.name && !!watchedFields.phone && !errors.name && !errors.phone;
-      case 2: // Additional info
-        return !!watchedFields.lead_type;
+      case 1: // Personal info and additional info
+        return (
+          !!watchedFields.name &&
+          !!watchedFields.phone &&
+          !!watchedFields.lead_type &&
+          !errors.name &&
+          !errors.phone
+        );
       default:
         return true;
     }
   };
 
   const renderStepIndicator = () => {
-    const totalSteps = 3;
+    const totalSteps = 2;
     
     return (
       <div className="flex justify-center mb-8">
@@ -256,13 +258,7 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
           <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
         )}
       </div>
-    </div>
-  );
 
-  const renderAdditionalInfoStep = () => (
-    <div className="space-y-8">
-      <h3 className="text-xl font-medium text-center text-gray-800 mb-6">Additional Information</h3>
-      
       <div className="relative">
         <select
           {...register('lead_type', {
@@ -271,7 +267,7 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
           className="luxury-input"
           defaultValue=""
         >
-          <option value="" disabled>Please Select</option>
+          <option value="" disabled>I am a...</option>
           <option value="intereted_to_buy">Interested To Buy</option>
           <option value="architect">Architect</option>
           <option value="interior_designer">Interior Designer</option>
@@ -299,14 +295,12 @@ const LeadForm: React.FC<{ onSubmit: (data: FormData) => Promise<void> }> = ({ o
         return renderLightTypesStep();
       case 1:
         return renderPersonalInfoStep();
-      case 2:
-        return renderAdditionalInfoStep();
       default:
         return null;
     }
   };
 
-  const totalSteps = 3;
+  const totalSteps = 2;
 
   return (
     <form 
